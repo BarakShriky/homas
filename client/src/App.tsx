@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Flex, TextField, Text, Button} from "@radix-ui/themes";
+import RegistrationForm from "./login/RegistrationForm";
 
 
 function App() {
@@ -9,11 +10,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Flex direction="column" gap="2">
-          <Text>ברוכים הבאים לחומ״ס</Text>
-          <TextField.Input variant="classic" placeholder="שם משתמש" />
-          <TextField.Input variant="classic" placeholder="סיסמה" />
-          <Button color='orange' variant='soft'>התחברות</Button>
+        <Flex direction="row" gap="9">
+          <Flex direction="column" gap="3">
+            <Text>אינך רשום למערכת?</Text>
+            <Text size="1">שלום רב! אנחנו מאוד שמחים לקבל אתכם למערכת</Text>
+            <RegistrationForm />
+          </Flex>
+          <Flex direction="column" gap="3">
+            <Text>ברוכים הבאים לחומ״ס</Text>
+            <TextField.Input variant="classic" placeholder="שם משתמש" />
+            <TextField.Input variant="classic" placeholder="סיסמה" />
+            <Button color='orange' variant='soft'>התחברות</Button>
+          </Flex>
         </Flex>
       </header>
     </div>
