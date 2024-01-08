@@ -10,7 +10,8 @@ export default class UserService {
         private userRepository: UserRepository,
         private userMapper: UserMapper,
         private logger: Logger,
-    ) {}
+    ) {
+    }
 
     async getUsers() {
         const users = await this.userRepository.findAsync<MongoUserDocument>({});
@@ -23,16 +24,10 @@ export default class UserService {
     }
 
     async createUser(req: Request) {
-        const {email, hebName, arabName, engName, rusName, contactName, phone, role, logo, username, password, rashutId} =
+        const {firstName, lastName, identityNumber, company, companyAddress, role, phone, email} =
             req.body;
         // Email uniqueness enforced by mongodb, will throw MongoServerError: E11000 on violation
-        const user = new User({
-            email,
-            phone,
-            role,
-            username,
-        });
-        await user.setPassword(password);
+        const user = new User({email, phone, role, firstName, lastName, identityNumber, company, companyAddress});
         await user.save();
         return this.userMapper.toUserModel(user);
     }
